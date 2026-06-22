@@ -1,257 +1,126 @@
-# 🛡️ SafeDrive AI
+# 🚗 SafeDrive AI
 
-SafeDrive AI is a real-time driver monitoring system that uses Computer Vision and AI to detect driver fatigue and distraction. When a critical event is detected, the system automatically triggers an emergency response workflow through WhatsApp, sending:
+> **Real-Time Driver Assistance & Monitoring System using Computer Vision & Artificial Intelligence**
 
-* 📍 Live Location
-* 📸 Three Incident Photos
-* 🎥 Five-Second Video Recording
-* 🚨 Emergency Alert Message
+SafeDrive AI is an AI-powered driver monitoring system developed to improve road safety by detecting driver fatigue, distraction, and unsafe driving behavior in real time. The system uses computer vision and deep learning techniques to monitor the driver and automatically trigger emergency alerts when necessary.
 
 ---
 
-## 🏗️ Architecture
+## 📌 Project Overview
 
-| Service            | Technology             | Purpose                                   |
-| ------------------ | ---------------------- | ----------------------------------------- |
-| Frontend Dashboard | Next.js                | Driver interface and monitoring dashboard |
-| AI Backend         | FastAPI + MediaPipe    | Fatigue and distraction detection         |
-| WhatsApp Bridge    | Node.js + WhatsApp Web | Emergency alert delivery                  |
+Road accidents caused by drowsiness and distracted driving are a major concern worldwide. SafeDrive AI continuously analyzes the driver's facial landmarks and behavior using AI models to identify dangerous situations and assist in preventing accidents.
 
 ---
 
-## 📋 Prerequisites
+## ✨ Key Features
 
-Install the following before running the project:
-
-* Node.js (v18 or higher)
-* Python (3.10 – 3.12)
-* FFmpeg
-
-### Arch Linux
-
-```bash
-sudo pacman -S ffmpeg unzip
-```
-
-### Ubuntu / Debian
-
-```bash
-sudo apt install ffmpeg unzip
-```
-
-### Windows
-
-Install FFmpeg and ensure it is available in your system PATH.
+- 😴 Driver drowsiness detection using Eye Aspect Ratio (EAR)
+- 👀 Driver attention monitoring using head pose estimation
+- 📱 Mobile phone detection using YOLOv8
+- 📊 Live driver safety monitoring dashboard
+- 🚨 Real-time voice alerts for unsafe driving behavior
+- 📍 Emergency response with GPS location sharing
+- 📸 Automatic incident image capture
+- 🎥 5-second incident video recording
+- 💬 WhatsApp emergency notification system
 
 ---
 
-## 🚀 1. Start the WhatsApp Bridge
+## 🛠️ Tech Stack
 
-Navigate to the bridge directory and install dependencies:
+### Frontend
+- Next.js
+- React
+- TypeScript
+- Tailwind CSS
 
-```bash
-cd whatsapp-bridge
-npm install
-```
+### Backend
+- Python
+- FastAPI
+- OpenCV
+- MediaPipe
+- YOLOv8
 
-Start the bridge:
+### Communication
+- Node.js
+- WhatsApp Web API
+- WebSockets
 
-```bash
-node index.js
-```
+---
 
-Scan the generated QR code using WhatsApp.
-
-Expected output:
+## 🏗️ System Architecture
 
 ```text
-WhatsApp Bridge READY
+Driver Camera
+      │
+      ▼
+Computer Vision (OpenCV + MediaPipe + YOLOv8)
+      │
+      ▼
+AI Detection Engine
+      │
+      ├── Driver Drowsiness Detection
+      ├── Head Pose Estimation
+      ├── Mobile Phone Detection
+      │
+      ▼
+Real-Time Dashboard
+      │
+      ▼
+Emergency Alert System
+      │
+      ▼
+WhatsApp Notification + GPS + Images + Video
 ```
 
 ---
 
-## 🧠 2. Start the AI Backend
-
-Navigate to the backend directory:
-
-```bash
-cd backend
-```
-
-Create a virtual environment:
-
-```bash
-python -m venv venv
-```
-
-Activate the virtual environment:
-
-### Linux / macOS
-
-```bash
-source venv/bin/activate
-```
-
-### Windows
-
-```powershell
-venv\Scripts\activate
-```
-
-Install dependencies:
-
-```bash
-pip install fastapi uvicorn opencv-python numpy httpx
-pip install mediapipe==0.10.13
-```
-
-Start the backend server:
-
-```bash
-uvicorn main:app --host 0.0.0.0 --port 8000 --reload
-```
-
-Backend URL:
+## 📂 Project Structure
 
 ```text
-http://localhost:8000
+SafeDrive-AI/
+│
+├── backend/
+├── frontend/
+├── whatsapp-bridge/
+├── README.md
+└── .gitignore
 ```
 
 ---
 
-## 💻 3. Start the Frontend Dashboard
+## 🚀 Future Improvements
 
-Navigate to the frontend directory:
-
-```bash
-cd frontend
-```
-
-Install dependencies:
-
-```bash
-npm install
-```
-
-Start the development server:
-
-```bash
-npm run dev
-```
-
-Open:
-
-```text
-http://localhost:3000
-```
+- Mobile application integration
+- Cloud deployment
+- Driver history analytics
+- Multi-camera support
+- Advanced AI models for higher accuracy
+- Voice assistant integration
 
 ---
 
-## 🎯 Usage
+## 👩‍💻 My Contribution
 
-### Initial Setup
-
-Provide:
-
-* Driver Name
-* Driver Phone Number
-* Guardian Phone Number (`923XXXXXXXXX`)
-
-Choose one of the following modes:
-
-#### System Number
-
-Uses a pre-configured WhatsApp account.
-
-#### Personal Number
-
-Allows the driver to link their own WhatsApp account.
+As a member of the project team, I contributed to the development, testing, integration, and documentation of the SafeDrive AI system. My work included building and improving project components, integrating features, debugging, and collaborating with teammates to deliver a complete AI-based driver monitoring solution.
 
 ---
 
-### Start Monitoring
+## 🎓 Academic Project
 
-1. Click **Initialize**
-2. Click **Start Driving**
+This project was developed as part of the **BS Software Engineering** program at **COMSATS University Islamabad, Lahore Campus**.
 
-The AI facial landmark mesh should appear on the driver's face.
-
----
-
-### Emergency Triggers
-
-#### Manual SOS
-
-Click **Initiate SOS**.
-
-#### Automatic SOS
-
-An alert is triggered when fatigue conditions are detected.
+> **Note:** This repository represents an academic group project uploaded to showcase my learning and portfolio.
 
 ---
 
-## 📦 Emergency Packet
+## 📬 Contact
 
-When an incident is detected, the guardian receives:
+**Leena Qaisar**
 
-* Emergency alert message
-* Live Google Maps location
-* Three captured images
-* Five-second incident video
+- GitHub: https://github.com/leenaqaisar
+- LinkedIn: *(Coming Soon)*
 
 ---
 
-## 🛠️ Troubleshooting
-
-### Webcam Not Detected
-
-Ensure no other application is currently using the webcam.
-
-Examples:
-
-* Zoom
-* Discord
-* OBS Studio
-* Google Meet
-
----
-
-### WhatsApp Video Delay
-
-Video processing may take several seconds.
-
-Wait until:
-
-```text
-✅ Video sent
-```
-
-appears in the bridge logs.
-
----
-
-### QR Code Not Appearing
-
-Verify that:
-
-* The WhatsApp Bridge is running
-* Port `3001` is available
-* Localhost requests are not blocked
-
----
-
-## 🔧 Technical Notes
-
-* MediaPipe is pinned to `0.10.13` for compatibility and stability.
-* FFmpeg is required for video processing before WhatsApp delivery.
-* The WhatsApp Bridge uses the system-installed Chrome/Chromium browser.
-
----
-
-## ✅ Status
-
-* WhatsApp Bridge Running
-* AI Backend Running
-* Frontend Dashboard Running
-
-SafeDrive AI is ready for monitoring.
+⭐ **If you found this project interesting, consider giving it a star!**
